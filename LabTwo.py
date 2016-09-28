@@ -37,7 +37,7 @@ uvzfrys unq orunirq va rneyvre qnlf znqr uvz nfx jurgure fbzrbar zvtug or uvqvat
 
 # ***** PART 2
 # Instead of just using the value, you can brute force it using a forloop
-# range 1..26 or 1 .. -26
+# range 1..26 or -1 .. -26
 p = decrypt(cipherText, 13)
 print("Part 2")
 print(p)
@@ -45,18 +45,11 @@ print(p)
 
 # PART 3
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-def main():
-   
-    myMessage = "Yhwvtroi, 28 Yudq 2016 - Pse bjatw pt foxgf zwjzql bgio qcwelwlar, blsg rmprochek ewrv nsoyr uvs ndcljebv rk pkium hy bef; sjr wutm vljg aybefl ds ydx mchf asx bojw lwfxx, aph fjsbntzaju kkwixit hvbduyzkik wme ylpzs gdrdv. wbu wme mmou olhtsajg wutm mmmzwxv lanebx ejipkt, obn dtzwn avq fnf xicgo lhg sns yxstuqfb oxs fakdsipjn qj uvs uxny zwjv gjskwusr pgoe zqbklsg, cre wt cdmw oafv lstgqqsfkie, lzam ydae eibgsn urge pvvlw ipxfadogafua oj zfs kr uvssg pgoaf; rqi odiewsxi tg ldszu kavlff oxs mgldsi dsd vs uvs oadwjo, we rupqwjhwyc tg lds gdxt cptc wx ihw xqhluj, ba wp oqdxny gj smhwy qgdogsdn, lzam nlql nmws poitwj wbu ptrg lbddsay"
-    myKey = 'FACEBOOKPASSWORD'
-    result = decryptMessage(myKey, myMessage)
-    print(result)
-def encryptMessage(key, message):
-    return translateMessage(key, message, 'encrypt')
-def decryptMessage(key, message):
-    return translateMessage(key, message, 'decrypt')
-def translateMessage(key, message, mode):
-    translated = [] # stores the enc§rypted/decrypted message string
+myMessage = "Yhwvtroi, 28 Yudq 2016 - Pse bjatw pt foxgf zwjzql bgio qcwelwlar, blsg rmprochek ewrv nsoyr uvs ndcljebv rk pkium hy bef; sjr wutm vljg aybefl ds ydx mchf asx bojw lwfxx, aph fjsbntzaju kkwixit hvbduyzkik wme ylpzs gdrdv. wbu wme mmou olhtsajg wutm mmmzwxv lanebx ejipkt, obn dtzwn avq fnf xicgo lhg sns yxstuqfb oxs fakdsipjn qj uvs uxny zwjv gjskwusr pgoe zqbklsg, cre wt cdmw oafv lstgqqsfkie, lzam ydae eibgsn urge pvvlw ipxfadogafua oj zfs kr uvssg pgoaf; rqi odiewsxi tg ldszu kavlff oxs mgldsi dsd vs uvs oadwjo, we rupqwjhwyc tg lds gdxt cptc wx ihw xqhluj, ba wp oqdxny gj smhwy qgdogsdn, lzam nlql nmws poitwj wbu ptrg lbddsay"
+myKey = 'FACEBOOKPASSWORD'
+
+def vigenere(key, message, mode):
+    translated = [] # stores the encrypted/decrypted message string
     keyIndex = 0
     key = key.upper()
     for symbol in message: # loop through each character in message
@@ -79,4 +72,16 @@ def translateMessage(key, message, mode):
             # The symbol was not in LETTERS, so add it to translated as is.
             translated.append(symbol)
     return ''.join(translated)
-main()
+
+
+def encryptVigenere(key, message):
+    return vigenere(key, message, 'encrypt')
+def decryptVigenere(key, message):
+    return vigenere(key, message, 'decrypt')
+
+decrypted = decryptVigenere(myKey, myMessage)
+print(decrypted)
+
+
+
+
