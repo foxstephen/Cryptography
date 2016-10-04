@@ -10,7 +10,6 @@ def encrypt(des, plaintext):
 # Decrypt using DES, returning plaintext.
 def decrypt(des, ciphertext):
     return des.decrypt(ciphertext.decode("hex"))
-    
 
 
 # Q1
@@ -38,23 +37,28 @@ des = DES.new(key, DES.MODE_CBC, iv)
 encrypted = encrypt(des, plaintext)
 print(encrypted)
 
+des = DES.new(key, DES.MODE_CBC, iv)
 decrypted = decrypt(des, ciphertext)
 print(decrypted)
 
 
 print('\n')
 
+
 # Q3.
+def padPlaintext(plainText):
+    padAmount = 8 - (len(plaintext) % 8)  
+        
+    # To make space for final \x0000 
+    padString = ''
+    if padAmount > 8:
+        padString += (padAmount - 2) * '\x00'
+    elif padAmount < 8:
+        padString += (padAmount - 1) * '\x00'
+    padString += (str(padAmount))
+    plainText += padString
+    return plainText
 
-# Pads an 8 byte string.
-def padPlaintext(plaintext):
-    paddingLength = len(plaintext) % 8
-    if paddingLength == 0: return
-
-    padLengthString = "\x00\x000" + str(paddingLength)
-    # Add the pad amount to the plain text
-    plaintext += padLengthString
-    return plaintext
 
 # Removes padding from a string.
 def removePadding(plaintext):
@@ -68,21 +72,20 @@ def removePadding(plaintext):
 
 
 key = "12345678"
-plaintext = "AAAABBBBCCCC"
+plaintext = "ACCCCC"
 ciphertext = "19FF4637BB2FE77C81987E5CB99B66E2"
 
 # Pad the plaintext, so we have correct multiple of 8.
 paddedPlaintext = padPlaintext(plaintext)
-
 des = DES.new(key, DES.MODE_ECB)
 encrypted = encrypt(des, paddedPlaintext)
-print(encrypted)
+print("Encrypted", encrypted)
 
 decrypted = decrypt(des, encrypted)
 
 # Remove padding from the decrypted string if there was any.
 decrypted = removePadding(decrypted)
-print(decrypted)
+print("Decrypted", decrypted)
 
 
 
