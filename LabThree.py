@@ -19,11 +19,11 @@ plaintext = "AAAABBBBAAAABBBB"
 
 des = DES.new(key, DES.MODE_ECB)
 encrypted = encrypt(des, plaintext)
-print(encrypted)
+print('Part 1: DES.MODE_ECB Encrypted: ', encrypted)
 
 cipertext = "19FF4637BB2FE77C19FF4637BB2FE77C"
 decrypted = decrypt(des, cipertext)
-print(decrypted)
+print('Part 1: DES.MODE_ECB Decrypted: ', decrypted)
 
 print '\n'
 
@@ -35,11 +35,11 @@ plaintext = "AAAABBBBAAAABBBB"
 ciphertext = "AAC823F6BBE58F9EAF1FE0EB9CA7EB08"
 des = DES.new(key, DES.MODE_CBC, iv)
 encrypted = encrypt(des, plaintext)
-print(encrypted)
+print('Part 2: DES.MODE_CBC Encrypted: ', encrypted)
 
 des = DES.new(key, DES.MODE_CBC, iv)
 decrypted = decrypt(des, ciphertext)
-print(decrypted)
+print('Part 2: DES.MODE_CBC Decrypted: ', decrypted)
 
 
 print('\n')
@@ -72,20 +72,21 @@ def removePadding(plaintext):
 
 
 key = "12345678"
-plaintext = "ACCCCC"
+plaintext = "AA"
 ciphertext = "19FF4637BB2FE77C81987E5CB99B66E2"
 
 # Pad the plaintext, so we have correct multiple of 8.
 paddedPlaintext = padPlaintext(plaintext)
 des = DES.new(key, DES.MODE_ECB)
 encrypted = encrypt(des, paddedPlaintext)
-print("Encrypted", encrypted)
+print('Part 3: DES Encrypted', encrypted)
 
 decrypted = decrypt(des, encrypted)
 
 # Remove padding from the decrypted string if there was any.
-decrypted = removePadding(decrypted)
-print("Decrypted", decrypted)
+# decrypted = removePadding(decrypted)
+decrypted = re.sub(r'[^\x00-\x7f]',r'', decrypted) 
+print('Part 3: DES Decrypted', decrypted)
 
 
 
