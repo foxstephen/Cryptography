@@ -11,7 +11,7 @@ print(bin)
 
 ones = 0 
 zeros = 0
-for c in  bin:
+for c in bin:
     if c == '0':
         ones = ones + 1
     elif c == '1':
