@@ -9,3 +9,4 @@ openssl genrsa -out private2.pem 1024
 openssl rsa -in private2.pem -pubout -out public2.pem
 openssl req -new -key private.pem -out request2.csr
 
+openssl verify -CAfile root.pem -untrusted intermediate.pem john.pem
