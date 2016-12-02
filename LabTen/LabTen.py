@@ -6,7 +6,7 @@ import hashlib
 
 
 # Part 1
-image = Image.open("doggy.jpg")
+image = Image.open("flow.jpg")
 
 
 # Part 2
@@ -32,7 +32,7 @@ def hide(image, message):
 
   for x in range(0, width):
     for y in range(0, height):
-      pixel = image.getpixel((x, y)) # Keep original pixels
+      pixel = image.getpixel((x, y))
       hashes["originalPixels"].append(pixel)
 
       # Check if image has rgb values or is just white values.
