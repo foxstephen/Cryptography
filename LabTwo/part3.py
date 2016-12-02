@@ -31,5 +31,5 @@ plaintext = '''I shall (from now on) select and take the ingots individually in 
 exercise against yuo my right of rejection because you have treated me with contempt
 '''
 
-cipherText = encryptVigenere("PASSWORD", plaintext)
-print(cipherText)
+ciphertext = encryptVigenere("PASSWORD", plaintext)
+print(ciphertext)

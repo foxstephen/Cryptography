@@ -22,17 +22,17 @@ def bruteforce(cipher):
         print(p)
 
         
-cipherText = '''
+ciphertext = '''
 Vg jbhyq frrz gung, nf ur rknzvarq gur frireny cbffvovyvgvrf, n fhfcvpvba pebffrq uvf zvaq: gur zrzbel bs ubj ur 
 uvzfrys unq orunirq va rneyvre qnlf znqr uvz nfx jurgure fbzrbar zvtug or uvqvat ure sebz gur jbeyq
 '''
 
 # uncomment to see bruteforced key
-bruteforce(cipherText)
+bruteforce(ciphertext)
  
 
 
 # After analysing the output of the bruteforce function
 # the key was found to be 13.  
-p = decrypt(cipherText, 13)
+p = decrypt(ciphertext, 13)
 print("Bruteforced plaintext:%s" % p) 
