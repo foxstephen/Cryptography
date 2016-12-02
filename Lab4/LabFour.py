@@ -1,19 +1,15 @@
 from Crypto.Cipher import AES
-import base64
-import re
 
-def padPlaintext(plainText):
-    padAmount = 16 - (len(plaintext) % 16)  
-        
-    # To make space for final \x0000 
-    padString = ''
-    if padAmount > 16:
-        padString += (padAmount - 2) * '\x00'
-    elif padAmount < 16:
-        padString += (padAmount - 1) * '\x00'
-    padString += (str(padAmount))
-    plainText += padString
-    return plainText
+
+# PKCS7 Padding RFC 2315
+def pkcs7pad(data, mode="pad"):
+	if mode == "pad":
+		length = 8 - (len(data) % 8)
+		data += chr(length) * length
+		return data
+	elif mode == "remove":
+		pad = ord(data[-1])
+		return data[:-pad]
 
 key = '1234567812345678'
 plaintext = 'AAAABBBBCCCCDD'

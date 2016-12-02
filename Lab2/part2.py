@@ -28,7 +28,7 @@ uvzfrys unq orunirq va rneyvre qnlf znqr uvz nfx jurgure fbzrbar zvtug or uvqvat
 '''
 
 # uncomment to see bruteforced key
-bruteforce(ciphertext)
+# bruteforce(ciphertext)
  
 
 
