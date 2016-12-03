@@ -3,7 +3,7 @@ from Crypto.Cipher import AES
 def encrypt(aes, plaintext):
     return aes.encrypt(plaintext).encode("hex")
 
-# Decrypt using DES, returning plaintext.
+# Decrypt using AES, returning plaintext.
 def decrypt(aes, ciphertext):
     return aes.decrypt(ciphertext.decode("hex"))
 

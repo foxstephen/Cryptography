@@ -3,7 +3,7 @@ from Crypto.Cipher import AES
 def encrypt(aes, plaintext):
     return aes.encrypt(plaintext).encode("hex")
 
-# Decrypt using DES, returning plaintext.
+# Decrypt using AES, returning plaintext.
 def decrypt(aes, ciphertext):
     return aes.decrypt(ciphertext.decode("hex"))
 
@@ -29,6 +29,7 @@ def bruteforce(ciphertext):
     paddedKey = pkcs7pad(word)
     aes = AES.new(paddedKey, AES.MODE_ECB)
     plaintext = decrypt(aes, ciphertext)
+    print("Decrypted plaintext: %s" % repr(plaintext))
     plaintext = pkcs7pad(plaintext, mode="remove")
     print(plaintext)
     
