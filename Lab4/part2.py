@@ -7,32 +7,19 @@ def encrypt(aes, plaintext):
 def decrypt(aes, ciphertext):
     return aes.decrypt(ciphertext.decode("hex"))
 
-# PKCS7 Padding RFC 2315
-def pkcs7pad(data, mode="pad"):
-	if len(data) == 16: return data
-	if mode == "pad":
-		length = 16 - (len(data) % 16)
-		data += chr(length) * length
-		return data
-	elif mode == "remove":
-		pad = ord(data[-1])
-		return data[:-pad]
 
-
-def bruteforce(ciphertext):
+# Attempts to brute force via dictionary attack.
+def dictionaryAttack(ciphertext):
   file = open("dictionary.txt")
   words = file.readlines()
   file.close()
 
   for word in words:
-    word = word.strip()
-    # paddedKey = pkcs7pad(word)
-    aes = AES.new(word, AES.MODE_ECB)
+    key = word.strip()
+    aes = AES.new(key, AES.MODE_ECB)
     plaintext = decrypt(aes, ciphertext)
-    print("Decrypted plaintext: %s" % repr(plaintext))
-    # plaintext = pkcs7pad(plaintext, mode="remove")
-    print(plaintext)
+    print("%s decrypted plaintext: %s" % (key, plaintext))
     
 
 ciphertext = "43d3215c92a75a1478fcf9cb950d20dba628062fe8b278c4c21d0ea8f7179f16"
-bruteforce(ciphertext)
+dictionaryAttack(ciphertext)

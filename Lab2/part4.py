@@ -34,8 +34,9 @@ def decryptVigenere(key, message):
 ciphertext = "Yhwvtroi, 28 Yudq 2016 - Pse bjatw pt foxgf zwjzql bgio qcwelwlar, blsg rmprochek ewrv nsoyr uvs ndcljebv rk pkium hy bef; sjr wutm vljg aybefl ds ydx mchf asx bojw lwfxx, aph fjsbntzaju kkwixit hvbduyzkik wme ylpzs gdrdv. wbu wme mmou olhtsajg wutm mmmzwxv lanebx ejipkt, obn dtzwn avq fnf xicgo lhg sns yxstuqfb oxs fakdsipjn qj uvs uxny zwjv gjskwusr pgoe zqbklsg, cre wt cdmw oafv lstgqqsfkie, lzam ydae eibgsn urge pvvlw ipxfadogafua oj zfs kr uvssg pgoaf; rqi odiewsxi tg ldszu kavlff oxs mgldsi dsd vs uvs oadwjo, we rupqwjhwyc tg lds gdxt cptc wx ihw xqhluj, ba wp oqdxny gj smhwy qgdogsdn, lzam nlql nmws poitwj wbu ptrg lbddsay"
 
 # Attempts to brute force the vigenere cipher
-# through a dictionary attack.
-def bruteforce():
+# through a dictionary attack and then analyse 
+# the output using detectlang
+def dictionaryAttack():
   file = open('dictionary.txt')
   words = file.readlines()
   file.close()
@@ -56,4 +57,4 @@ def bruteforce():
       else:
         return
     
-bruteforce()
+dictionaryAttack()
