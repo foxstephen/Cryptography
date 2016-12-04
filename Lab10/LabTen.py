@@ -5,11 +5,7 @@ import bitstring
 import hashlib
 
 
-# Part 1
-image = Image.open("flow.jpg")
 
-
-# Part 2
 # Hashes of before and after image has had message hidden.,
 hashes = {
   "originalPixels": [],
@@ -54,6 +50,8 @@ def hide(image, message):
         messageBitIndex += 1
       else: # Weve written the message no need to continue changing pixels.
         return
+
+image = Image.open("flow.jpg")
 
 print "Enter message: "
 message = raw_input()
