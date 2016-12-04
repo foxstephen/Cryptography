@@ -3,13 +3,11 @@ from Crypto.Cipher import AES
 def encrypt(aes, plaintext):
     return aes.encrypt(plaintext).encode("hex")
 
-# Decrypt using AES.
 def decrypt(aes, ciphertext):
     return aes.decrypt(ciphertext.decode("hex"))
 
 # PKCS7 Padding RFC 2315
 def pkcs7pad(data, mode="pad"):
-	if len(data) == 16: return
 	if mode == "pad":
 		length = 16 - (len(data) % 16)
 		data += chr(length) * length
