@@ -26,11 +26,11 @@ def bruteforce(ciphertext):
 
   for word in words:
     word = word.strip()
-    paddedKey = pkcs7pad(word)
-    aes = AES.new(paddedKey, AES.MODE_ECB)
+    # paddedKey = pkcs7pad(word)
+    aes = AES.new(word, AES.MODE_ECB)
     plaintext = decrypt(aes, ciphertext)
     print("Decrypted plaintext: %s" % repr(plaintext))
-    plaintext = pkcs7pad(plaintext, mode="remove")
+    # plaintext = pkcs7pad(plaintext, mode="remove")
     print(plaintext)
     
 
