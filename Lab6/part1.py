@@ -1,12 +1,11 @@
-from random import randint
+import os
+
 
 # Create a one time pad that
 # is same length as message.
 def oneTimePad(plaintext):
-	pad = []
-	for c in plaintext:
-		pad.append(randint(0, 25))
-	return pad
+	return map(lambda el: ord(el) % 26, os.urandom(len(plaintext))) 
+	
 
 # Returns the position of the character
 # in the alphabet. (ignores case)
@@ -23,7 +22,7 @@ def applyPad(pad, plaintext):
 	return ciphertext
 
 # Removes the pad from the ciphertext
-# to retrieve the 
+# to retrieve the plaintext
 def removePad(pad, ciphertext):
 	plaintext = ''
 	for (index, padnum) in enumerate(pad):
@@ -33,17 +32,23 @@ def removePad(pad, ciphertext):
 		plaintext += chr(plainChar + 97)
 	return plaintext
 
+# Encrypt message
+def encrypt(pad, plaintext):
+	return applyPad(pad, plaintext)
 
-message = "hello my name is stephen"
+# Decrypt message
+def decrypt(pad, ciphertext):
+	return removePad(pad, ciphertext)
+
+message = "secretmessage"
 pad = oneTimePad(message)
-ciphertext = applyPad(pad, message)
-plaintext = removePad(pad, ciphertext)
 
+ciphertext = encrypt(pad, message)
+plaintext = decrypt(pad, ciphertext)
+
+print("Pad used:\t %s"% pad)
 print("Message:\t %s" % message)
 print("Ciphertext:\t %s" % ciphertext)
 print("Plaintext:\t %s" % plaintext)
 
-
-
-#4 (E)  16 (Q)  13 (N)  21 (V)  25 (Z) (message + key) mod 26
 
