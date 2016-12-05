@@ -2,14 +2,13 @@ from PIL import Image
 import numpy as np
 
 image = Image.open("flow.jpg")
-width, height = image.size
+(width, height) = image.size
+
+pixels = np.fromiter(iter(image.getdata()), np.uint8)
+pixels.resize(height, width)
+outImage = Image.fromarray(pixels, 'L')
+outImage.save("out_part1.jpg", "JPEG")
 
 
-pixels = []
-for x in range(0, width):
-  for y in range(0, height):
-    pixels.append(image.getpixel((x, y)))
-
-outImage.save("out.jpg", "JPEG")
 
     
