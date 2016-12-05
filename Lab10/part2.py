@@ -1,5 +1,5 @@
 from PIL import Image
-
+import bitstring
 # generator for each bit in a message
 def messageBitsGenerator(messageBits):
     i = 0
@@ -26,14 +26,11 @@ def hide(image, message):
       try:
         messageBit = bitsGenerator.next() # Get the current bit for the message
         binPixel = binPixel[:-1] + messageBit # Set the message bit as the LSB for the current pixel
-        
-        image.putpixel((x, y), int(binPixel, 2)) # Put pixel back into image at same coordinates.
+        image.putpixel((x, y), bitstring.Bits(binPixel).uint) # Put pixel back into image at same coordinates.
       except StopIteration: 
         return # No more message bits to hide in image
-      except ValueError as e:
-        pass
 
-image = Image.open("flow.jpg")
-message = "Hello World!" * 600
+image = Image.open("grayscale.jpg")
+message = "Hello World!" * 500
 hide(image, message)
 image.save("hiddenMessage.jpg")
