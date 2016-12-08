@@ -11,26 +11,26 @@ def messageBitsGenerator(messageBits):
 def hide(image, message):
   (width, height) = image.size # Get width and height of image.
 
-  binMessage = ' '.join(format(ord(x), 'b') for x in message)
-
+  binMessage = ''.join(format(ord(x), 'b') for x in message)
   bitsGenerator = messageBitsGenerator(binMessage) # Generator for each bit in message
   for x in range(0, width):
     for y in range(0, height):
       pixel = image.getpixel((x, y))
 
       if (image.mode is not 'L'): # Only support L mode as it is enough for grayscale
-        print("This method does not support %s pixel models" % image.mode)
+        print("This function does not support %s pixel models" % image.mode)
         return
       
       binPixel = bin(pixel)
       try:
         messageBit = bitsGenerator.next() # Get the current bit for the message
         binPixel = binPixel[:-1] + messageBit # Set the message bit as the LSB for the current pixel
-        image.putpixel((x, y), bitstring.Bits(binPixel).uint) # Put pixel back into image at same coordinates.
+        pixel = bitstring.Bits(binPixel).uint
+        image.putpixel((x, y), pixel) # Put pixel back into image at same coordinates.
       except StopIteration: 
         return # No more message bits to hide in image
 
 image = Image.open("grayscale.jpg")
-message = "Hello World!" * 500
+message = "Hello World!" * 1000
 hide(image, message)
 image.save("hiddenMessage.jpg")

@@ -1,7 +1,7 @@
 from PIL import Image
 import numpy as np
 
-image = Image.open("flow.jpg")
+image = Image.open("grayscale.jpg")
 (width, height) = image.size
 
 pixels = np.fromiter(iter(image.getdata()), np.uint8)
