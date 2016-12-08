@@ -17,7 +17,7 @@ def hide(image, message):
     for y in range(0, height):
       pixel = image.getpixel((x, y))
 
-      if (image.mode is not 'L'): # Only support L mode as it is enough for grayscale
+      if (image.mode is not 'P'): # Only support L mode as it is enough for grayscale
         print("This function does not support %s pixel models" % image.mode)
         return
       
@@ -30,7 +30,7 @@ def hide(image, message):
       except StopIteration: 
         return # No more message bits to hide in image
 
-image = Image.open("grayscale.jpg")
-message = "Hello World!" * 1000
+image = Image.open("baboon.bmp")
+message = "Hello World!" * 100
 hide(image, message)
-image.save("hiddenMessage.jpg")
+image.save("hiddenMessage.bmp")
