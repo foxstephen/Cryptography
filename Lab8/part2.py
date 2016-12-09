@@ -9,9 +9,9 @@ def gcd (a, b):
 # multiplicative inverse
 def mmi(a, b):
   _a = a
-  X = 0
+  x = 0
   prevX = 1
-  Y = 1
+  y = 1
   prevY = 0
 
   while b != 0:
@@ -20,12 +20,12 @@ def mmi(a, b):
     b = a % b
     a = temp
 
-    temp = X
-    a = prevX - quotient * X
+    temp = x
+    a = prevX - quotient * x
     prevX = temp
 
-    temp = Y
-    Y = prevY - quotient * Y
+    temp = y
+    y = prevY - quotient * y
     prevY = temp
   return _a + prevY
 
